@@ -6,6 +6,7 @@ namespace GOSTSignature
     {
         static void Main(string[] args)
         {
+            шрщшршщр
             Console.WriteLine("Hello World!");
         }
     }
