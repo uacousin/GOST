@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <PackageId>GOST</PackageId>
+    <Authors>Fedianovych Oleh</Authors>
+    <Company>KPI</Company>
+    <Product>IPT</Product>
+    <RootNamespace>GOST</RootNamespace>
+    <ApplicationIcon />
+    <OutputTypeEx>exe</OutputTypeEx>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    
+  </ItemGroup>
+
+</Project>

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GOSTSignature
+namespace GOST
 {
     class GOSTSignatureChecker
     {
