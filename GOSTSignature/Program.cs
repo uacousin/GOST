@@ -8,6 +8,7 @@ namespace GOSTSignature
         {
             
             Console.WriteLine("Hello World!");
+            Console.WriteLine("Sanya Connected!!");
         }
     }
 }
