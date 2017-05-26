@@ -4,6 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOSTSignature", "GOSTSignature\GOSTSignature.csproj", "{F23D03EA-6C4A-4DB0-A04B-E1CAE1E8F4C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{92202EDB-6015-484D-A1CC-FDC3D2080B1E} = {92202EDB-6015-484D-A1CC-FDC3D2080B1E}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumberGenerator", "..\BBSAndGostGenerator\PrimeNumberGenerator\PrimeNumberGenerator.csproj", "{92202EDB-6015-484D-A1CC-FDC3D2080B1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{F23D03EA-6C4A-4DB0-A04B-E1CAE1E8F4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F23D03EA-6C4A-4DB0-A04B-E1CAE1E8F4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F23D03EA-6C4A-4DB0-A04B-E1CAE1E8F4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92202EDB-6015-484D-A1CC-FDC3D2080B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92202EDB-6015-484D-A1CC-FDC3D2080B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92202EDB-6015-484D-A1CC-FDC3D2080B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92202EDB-6015-484D-A1CC-FDC3D2080B1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
