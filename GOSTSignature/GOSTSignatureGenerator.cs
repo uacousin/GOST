@@ -13,19 +13,23 @@ namespace GOST
         public readonly BigInteger p;
         public readonly BigInteger q;
         public readonly BigInteger a;
+        public readonly BigInteger y;
         private BigInteger x;
         public HashAlgorithm hasher;
         
-        public GOSTSignatureGenerator (BigInteger p, BigInteger q, BigInteger x)
+        public GOSTSignatureGenerator (BigInteger p, BigInteger q, BigInteger a,  BigInteger x)
         {
             GOSTPrimeNumberGenerator primeNumberGenerator = new GOSTPrimeNumberGenerator();            
             this.p = p;
             this.q = q;
-            a = GenerateA();
+            this.a = a;
+            this.x = x;
+           
+            y = BigInteger.ModPow(a, x, p);
             hasher = MD5.Create();                      
         }
 
-        public BigInteger GenerateA()
+        public static BigInteger GenerateA(BigInteger p, BigInteger q)
         {
             var d = BigIntegerExtentions.GenerateBigIntByBitLength(p.ToBinaryString().Length - 1);
             BigInteger f = 1;
@@ -44,17 +48,18 @@ namespace GOST
             BigInteger r;
             BigInteger rs = 0;
             BigInteger s=0;
+            int qLength = q.ToBinaryString().Length;
             while (s == 0)
             {
                 while (rs == 0)
                 {
-                    k = BigIntegerExtentions.GenerateBigIntByBitLength(q.ToBinaryString().Length - 1);
+                    k = BigIntegerExtentions.GenerateBigIntByBitLength(qLength - 2);
                     r = BigInteger.ModPow(a, k, p);
                     rs = r % q;
                 }
                 s = (x * rs + k * hashOfMNumber) % q;
             }
-            return new Signature(rs.ToString() + s.ToString(), hashOfMString);
+            return new Signature(s, rs, y, M);
         }
 
 
