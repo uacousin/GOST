@@ -3,10 +3,10 @@ namespace GOST
 {
     class Signature
     {
-        public readonly BigInteger s;
-        public readonly BigInteger rs;
-        public readonly BigInteger y;
-        public readonly string M;     
+        public  BigInteger s;
+        public  BigInteger rs;
+        public  BigInteger y;
+        public  string M;     
         public Signature(BigInteger s, BigInteger rs, BigInteger y , string M)
         {
             this.s = s;

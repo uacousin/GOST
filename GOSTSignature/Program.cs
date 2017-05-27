@@ -9,33 +9,32 @@ namespace GOST
         static void Main(string[] args)
         {
             
-            GOSTPrimeNumberGenerator primeNumberGenerator = new GOSTPrimeNumberGenerator();
-            var n = new BigInteger(16);
-            Console.WriteLine(n.ToBinaryString());
+            GOSTPrimeNumberGenerator primeNumberGenerator = new GOSTPrimeNumberGenerator();            
             Console.WriteLine("Generating p and q...");
+            
             
             primeNumberGenerator.Generate(512);
             Console.WriteLine(primeNumberGenerator.q.BitLength());
             Console.WriteLine(primeNumberGenerator.p.BitLength());
-            BigInteger p = primeNumberGenerator.p;
-            BigInteger q = primeNumberGenerator.q;
+            BigInteger p =  primeNumberGenerator.p;
+            BigInteger q =primeNumberGenerator.q;
             Console.WriteLine("Generating a...");
             BigInteger a = GOSTSignatureGenerator.GenerateA(p, q);
             Console.WriteLine("Generating signature...");
-            int x = 124;
+            int x = new BigInteger("");
             GOSTSignatureGenerator signatureGenerator = new GOSTSignatureGenerator(p, q, a, x);
-            var signature = signatureGenerator.GenerateSignature("oleh");
+            var signature = signatureGenerator.GenerateSignature("message");
             Console.WriteLine("Checking signature...");
             Console.WriteLine(GOSTSignatureChecker.Check(signature, p, q, a));
+
+            signature.M = "message2";           
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine("Checking signature...");
+            Console.WriteLine(GOSTSignatureChecker.Check(signature, p, q, a));
+
+
             Console.ReadKey();
         }
-        public static string MD5Hash(string input)
-        {
-            using (var md5 = MD5.Create())
-            {
-                var result = md5.ComputeHash(Encoding.ASCII.GetBytes(input));
-                return Encoding.ASCII.GetString(result);
-            }
-        }
+        
     }
 }
