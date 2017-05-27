@@ -81,20 +81,18 @@ namespace GOST
             bytearray[bytearray.Length - 1] = (byte)0x00;
             return new BigInteger(bytearray);
         }
-
+        public static int BitLength(this BigInteger bi) => bi.ToBinaryString().Length - 1;
+     
         public static String ToBinaryString (this BigInteger bi)
         {            
             byte[] bytearray = bi.ToByteArray();
-            var length = bytearray.Length;
+            var length = bytearray.Length-1;
 
-            StringBuilder resultbuilder = new StringBuilder(length * 8+1);
-            var binary = Convert.ToString(bytearray[length - 1], 2);
+            StringBuilder resultbuilder = new StringBuilder(bytearray.Length * 8);
+            
 
-            if (binary[0] != '0'&&bi.Sign == 1)
-                resultbuilder.Append("0");
-
-            string temp;
-
+            string temp = Convert.ToString(bytearray[length], 2);
+            resultbuilder.Append(temp);
             for (int i= length - 1; i>=0; i--)
             {
                 temp = Convert.ToString(bytearray[i], 2);

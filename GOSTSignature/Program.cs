@@ -12,11 +12,11 @@ namespace GOST
             GOSTPrimeNumberGenerator primeNumberGenerator = new GOSTPrimeNumberGenerator();
             var n = new BigInteger(16);
             Console.WriteLine(n.ToBinaryString());
-            /*Console.WriteLine("Generating p and q...");
-            Console.WriteLine(primeNumberGenerator.q.ToBinaryString().Length);
-            Console.WriteLine(primeNumberGenerator.p.ToBinaryString().Length);
-            primeNumberGenerator.Generate(1024);
+            Console.WriteLine("Generating p and q...");
             
+            primeNumberGenerator.Generate(512);
+            Console.WriteLine(primeNumberGenerator.q.BitLength());
+            Console.WriteLine(primeNumberGenerator.p.BitLength());
             BigInteger p = primeNumberGenerator.p;
             BigInteger q = primeNumberGenerator.q;
             Console.WriteLine("Generating a...");
@@ -26,7 +26,7 @@ namespace GOST
             GOSTSignatureGenerator signatureGenerator = new GOSTSignatureGenerator(p, q, a, x);
             var signature = signatureGenerator.GenerateSignature("oleh");
             Console.WriteLine("Checking signature...");
-            Console.WriteLine(GOSTSignatureChecker.Check(signature, p, q, a));*/
+            Console.WriteLine(GOSTSignatureChecker.Check(signature, p, q, a));
             Console.ReadKey();
         }
         public static string MD5Hash(string input)
