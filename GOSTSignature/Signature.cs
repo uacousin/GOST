@@ -6,12 +6,12 @@ namespace GOST
         public  BigInteger s;
         public  BigInteger rs;
         public  BigInteger y;
-        public  string M;     
-        public Signature(BigInteger s, BigInteger rs, BigInteger y , string M)
+        public  BigInteger hashOfM;     
+        public Signature(BigInteger s, BigInteger rs, BigInteger y , BigInteger hashOfM)
         {
             this.s = s;
             this.rs = rs;
-            this.M = M;
+            this.hashOfM = hashOfM;
             this.y = y;
         }
     }

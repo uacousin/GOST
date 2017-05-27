@@ -24,11 +24,11 @@ namespace GOST
             this.q = q;
             this.a = a;
             this.x = x;
-            var ql = q.BitLength();
-            var pl = p.BitLength();
-            var al = a.BitLength();
+            //var ql = q.BitLength();
+            //var pl = p.BitLength();
+            //var al = a.BitLength();
             y = BigInteger.ModPow(a, x, p);
-            hasher = MD5.Create();                      
+                           
         }
 
         public static BigInteger GenerateA(BigInteger p, BigInteger q)
@@ -50,11 +50,9 @@ namespace GOST
             return f;
         }
 
-        public Signature GenerateSignature (string M)
+        public Signature GenerateSignature (BigInteger hashOfMNumber)
         {
-            var hashOfMBytes = hasher.ComputeHash(Encoding.ASCII.GetBytes(M));
-            string hashOfMString  = BitConverter.ToString(hashOfMBytes).Replace("-", "").ToLower();
-            BigInteger hashOfMNumber =BigInteger.Parse(hashOfMString, System.Globalization.NumberStyles.HexNumber);
+            
             //var ml = hashOfMNumber.BitLength();
             BigInteger k;
             BigInteger r;
@@ -66,9 +64,10 @@ namespace GOST
                 while (rs == 0)
                 {
                     k = BigIntegerExtentions.GenerateBigIntByBitLength(qLength - 1);
+                    k = BigInteger.Parse("0" + "90F3A564439242F5186EBB224C8E223811B7105C64E4F5390807E6362DF4C72A", System.Globalization.NumberStyles.AllowHexSpecifier);
                     if (k > q)
                     {
-                        Console.WriteLine("Next k");
+                        //Console.WriteLine("Next k");
                         continue;
                     }
                     r = BigInteger.ModPow(a, k, p);
@@ -79,7 +78,7 @@ namespace GOST
             //var lk = k.BitLength();
             //var ls = s.BitLength();
             //var lrs = rs.BitLength();
-            return new Signature(s, rs, y, M);
+            return new Signature(s, rs, y, hashOfMNumber);
         }
 
 
