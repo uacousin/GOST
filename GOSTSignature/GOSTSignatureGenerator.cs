@@ -22,7 +22,7 @@ namespace GOST
             this.p = p;
             this.q = q;
             a = GenerateA();
-            hasher = MD5.Create();                      
+            hasher = SHA256.Create();                      
         }
 
         public BigInteger GenerateA()
@@ -38,7 +38,8 @@ namespace GOST
         {
             var hashOfMBytes = hasher.ComputeHash(Encoding.ASCII.GetBytes(M));
             string hashOfMString  = BitConverter.ToString(hashOfMBytes).Replace("-", "").ToLower();
-            BigInteger hashOfMNumber = new BigInteger(hashOfMBytes);
+            //BigInteger hashOfMNumber = new BigInteger(hashOfMBytes);
+            BigInteger hashOfMNumber = BigInteger.Parse("0" + hashOfMString, System.Globalization.NumberStyles.AllowHexSpecifier);
 
             BigInteger k;
             BigInteger r;
@@ -54,7 +55,7 @@ namespace GOST
                 }
                 s = (x * rs + k * hashOfMNumber) % q;
             }
-            return new Signature(rs.ToString() + s.ToString(), hashOfMString);
+            return new Signature(s, rs, rs.ToString() + s.ToString(), hashOfMString);
         }
 
 
