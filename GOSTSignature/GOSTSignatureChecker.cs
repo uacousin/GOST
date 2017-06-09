@@ -4,7 +4,7 @@ using System.Text;
 using System.Numerics;
 using System.Security.Cryptography;
 
-namespace GOSTSignature
+namespace GOST
 {
      class GOSTSignatureChecker
     {
