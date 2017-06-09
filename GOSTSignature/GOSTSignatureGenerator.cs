@@ -63,8 +63,8 @@ namespace GOST
             {
                 while (rs == 0)
                 {
-                    k = BigIntegerExtentions.GenerateBigIntByBitLength(qLength - 1);
-                    //k = BigInteger.Parse("0" + "90F3A564439242F5186EBB224C8E223811B7105C64E4F5390807E6362DF4C72A", System.Globalization.NumberStyles.AllowHexSpecifier);
+                    //k = BigIntegerExtentions.GenerateBigIntByBitLength(qLength - 1);
+                    k = BigInteger.Parse("0" + "90F3A564439242F5186EBB224C8E223811B7105C64E4F5390807E6362DF4C72A", System.Globalization.NumberStyles.AllowHexSpecifier);
                     
                     if (k > q)
                     {

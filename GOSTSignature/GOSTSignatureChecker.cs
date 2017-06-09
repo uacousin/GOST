@@ -10,6 +10,10 @@ namespace GOST
     {
         public static bool Check ( Signature signature, BigInteger p, BigInteger q, BigInteger a)
         {
+            if (signature.rs < 0 || signature.s < 0)
+                return false;
+            if (signature.rs > q || signature.s > q)
+                return false;
 
             BigInteger hashOfMNumber = signature.hashOfM;
             BigInteger v = BigInteger.ModPow(hashOfMNumber, q - 2, q);

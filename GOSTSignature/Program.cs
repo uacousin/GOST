@@ -66,8 +66,9 @@ namespace GOST
             Console.WriteLine("\nChecking signature...");
             Console.WriteLine("Valid: {0}", GOSTSignatureChecker.Check(signature, p, q, a));
 
-
             Console.ReadKey();
+
+
         }
 
 
