@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿using System.Numerics;
 namespace GOST
 {
     class Signature
     {
-        public readonly string signature;
-        public readonly string M;
-        public Signature (string signature, string M)
+        public  BigInteger s;
+        public  BigInteger rs;
+        public  BigInteger y;
+        public  BigInteger hashOfM;     
+        public Signature(BigInteger s, BigInteger rs, BigInteger y , BigInteger hashOfM)
         {
-            this.signature = signature;
-            this.M = M;
+            this.s = s;
+            this.rs = rs;
+            this.hashOfM = hashOfM;
+            this.y = y;
         }
-
     }
 }
