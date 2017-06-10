@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RootNamespace>GOST</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PrimeNumberGenerator\PrimeNumberGenerator.csproj" />
+    <ProjectReference Include="..\TripleDESProject\TripleDESProject.csproj" />
+  </ItemGroup>
+
+</Project>
