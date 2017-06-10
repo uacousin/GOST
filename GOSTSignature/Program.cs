@@ -38,6 +38,7 @@ namespace GOST
             //a = BigInteger.Parse("0" + "9E96031500C8774A869582D4AFDE2127AFAD2538B4B6270A6F7C8837B50D50F206755984A49E509304D648BE2AB5AAB18EBE2CD46AC3D8495B142AA6CE23E21C", System.Globalization.NumberStyles.AllowHexSpecifier);
             //hashOfM = BigInteger.Parse("0" + "3534454132454236443134453437313943363345374143423445413631454230", System.Globalization.NumberStyles.AllowHexSpecifier);
             //x = BigInteger.Parse("0" + "3036314538303830343630454235324435324234314132373832433138443046", System.Globalization.NumberStyles.AllowHexSpecifier);
+
             p = primeNumberGenerator.p;
             q = primeNumberGenerator.q;
             x = 12345678;          
@@ -56,15 +57,15 @@ namespace GOST
             Console.WriteLine("hashOfM= {0}", signature.hashOfM.ToString("X"));
 
             Console.WriteLine("\nChecking signature...");
-            Console.WriteLine("Valid: {0}", GOSTSignatureChecker.Check(signature, p, q, a));
+            Console.WriteLine("Valid: {0}", GOSTSignatureChecker.Check(signature));
 
-
+            
 
             //Wrong Signature 
             signature.hashOfM = Hash("message2");
             Console.WriteLine("\n---------------------------------");
             Console.WriteLine("\nChecking signature...");
-            Console.WriteLine("Valid: {0}", GOSTSignatureChecker.Check(signature, p, q, a));
+            Console.WriteLine("Valid: {0}", GOSTSignatureChecker.Check(signature));
 
             Console.ReadKey();
 

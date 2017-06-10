@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 
 namespace GOST
 {
-     class GOSTSignatureGenerator
+    public class GOSTSignatureGenerator
     {
         public readonly BigInteger p;
         public readonly BigInteger q;
@@ -17,8 +17,20 @@ namespace GOST
         private BigInteger x;
         public HashAlgorithm hasher;
         
+        public GOSTSignatureGenerator(BigInteger x)
+        {
+            GOSTPrimeNumberGenerator primeNumberGenerator = new GOSTPrimeNumberGenerator();
+            primeNumberGenerator.Generate(512);
+            p = primeNumberGenerator.p;
+            q = primeNumberGenerator.q;
+            a = GenerateA(p, q);
+            this.x = x;
+            y = BigInteger.ModPow(a, x, p);
+        }
+
         public GOSTSignatureGenerator (BigInteger p, BigInteger q, BigInteger a,  BigInteger x)
         {
+            
             GOSTPrimeNumberGenerator primeNumberGenerator = new GOSTPrimeNumberGenerator();            
             this.p = p;
             this.q = q;
@@ -79,7 +91,7 @@ namespace GOST
             //var lk = k.BitLength();
             //var ls = s.BitLength();
             //var lrs = rs.BitLength();
-            return new Signature(s, rs, y, hashOfMNumber);
+            return new Signature(s, rs, y, hashOfMNumber, p,q,a);
         }
 
 

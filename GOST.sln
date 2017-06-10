@@ -1,11 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOSTSignature", "GOSTSignature\GOSTSignature.csproj", "{F23D03EA-6C4A-4DB0-A04B-E1CAE1E8F4C0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrimeNumberGenerator", "PrimeNumberGenerator\PrimeNumberGenerator.csproj", "{32125C96-AB78-4E52-B004-EE10F2BA418E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender", "Sender\Sender.csproj", "{570030D9-2FF3-49D9-A2A7-4CD486248EF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{40CE9A9D-C140-4314-83A2-44405DE4B26B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6910A272-86D9-46BE-93F3-D1D4EA8406FF}"
+	ProjectSection(SolutionItems) = preProject
+		KeyExchange\Receive.json = KeyExchange\Receive.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendReceive", "SendReceive\SendReceive.csproj", "{0BBE01F0-74AE-4637-89C4-413DB58B6383}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +32,18 @@ Global
 		{32125C96-AB78-4E52-B004-EE10F2BA418E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32125C96-AB78-4E52-B004-EE10F2BA418E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32125C96-AB78-4E52-B004-EE10F2BA418E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{570030D9-2FF3-49D9-A2A7-4CD486248EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{570030D9-2FF3-49D9-A2A7-4CD486248EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{570030D9-2FF3-49D9-A2A7-4CD486248EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{570030D9-2FF3-49D9-A2A7-4CD486248EF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40CE9A9D-C140-4314-83A2-44405DE4B26B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40CE9A9D-C140-4314-83A2-44405DE4B26B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40CE9A9D-C140-4314-83A2-44405DE4B26B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40CE9A9D-C140-4314-83A2-44405DE4B26B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BBE01F0-74AE-4637-89C4-413DB58B6383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BBE01F0-74AE-4637-89C4-413DB58B6383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BBE01F0-74AE-4637-89C4-413DB58B6383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BBE01F0-74AE-4637-89C4-413DB58B6383}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

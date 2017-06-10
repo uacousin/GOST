@@ -6,10 +6,13 @@ using System.Numerics;
 
 namespace GOST
 {
-    internal static class GOSTSignatureChecker
+    public static class GOSTSignatureChecker
     {
-        public static bool Check ( Signature signature, BigInteger p, BigInteger q, BigInteger a)
+        public static bool Check ( Signature signature )
         {
+            BigInteger p = signature.p;
+            BigInteger q = signature.q;
+            BigInteger a = signature.a;
             if (signature.rs < 0 || signature.s < 0)
                 return false;
             if (signature.rs > q || signature.s > q)

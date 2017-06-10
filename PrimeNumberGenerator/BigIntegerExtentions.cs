@@ -34,6 +34,14 @@ namespace GOST
             return true;
         }
 
+
+        public static BigInteger FromByteArray(byte[] a)
+        {
+            byte[] na = new byte[a.Length+1];
+            a.CopyTo(na, 0);
+            na[na.Length - 1] = (byte)0x00;
+            return new BigInteger(na);
+        }
         public static bool MillerRabin(BigInteger p, BigInteger x)
         {
             BigInteger d = p - 1;
