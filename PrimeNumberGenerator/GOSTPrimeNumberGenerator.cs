@@ -27,93 +27,54 @@ namespace GOST
                         
         }
         public void Generate(int capacity)
-        {   
-        
-            c = BigIntegerExtentions.GenerateBigIntByBitLength(16);
-            if (c % 2 == 0)
-                c--;
-            x0 = BigIntegerExtentions.GenerateBigIntByBitLength(16);
-            BigInteger y0 = x0;
-            //yArray.Add(x0); //First step
-            InitTArray(capacity); //Second step
-            BigInteger[] pArray = new BigInteger[s + 1];
-            pArray[s] = 65537; // Third step
-            m = s - 1; //4th step
-            int k;
+        {      
+            InitTArray(capacity); //1
+            BigInteger[] pArray = new BigInteger[tArray.Count];
+            pArray[s] = 65537; //2
+            m = s - 1; //3
+            int u;
+            Random rnd = new Random();
+            double d;
+            int d1;
             BigInteger N;
+            bool flag = false;
             while (m >= 0)
             {
-                int rm = tArray[m + 1] / 16 + 1; //5th step
+                d = rnd.NextDouble();//4
+                d1 = (int)(d * 1000);           
+                var temp = BigInteger.Pow(2, tArray[m] - 1) / pArray[m + 1]+1;
+                var temp2 = (BigInteger.Pow(2, tArray[m] - 1) * d1) / (pArray[m + 1] * 1000);
+                N = temp + temp2;
+                if (N % 2 == 1)
+                    N++;
+               
+                u = 0; //5
                 while (true)
                 {
-                    GenerateYArray(rm, y0); //6th step
-                    BigInteger Ym ;
-
-                    for (int i = 0; i < rm - 1; i++)
-                    {
-                        Ym += yArray[i];
+                    pArray[m] = pArray[m + 1] * (N + u) + 1; //6
+                    if (pArray[m] > BigInteger.Pow(2, tArray[m]))
+                    { 
+                        flag = true;
+                        break; //7   
                     }
-                    Ym = BigInteger.Multiply(Ym, 1); // 7th step
-                    y0 = yArray[rm];
-                    yArray[0] = yArray[rm - 1]; //8th step
-                    var temp = BigInteger.Pow(2, tArray[m] - 1) / pArray[m + 1];
-                    var temp2 = BigInteger.Pow(2, tArray[m] - 1) * Ym / (pArray[m + 1] * BigInteger.Pow(2,16*rm));
-                    N =  temp+ temp2 +1 ;
-                    if (N % 2 == 1)
-                        N++;
-                    k = 0; // 10th step 
-                    while (true)
+                    if (BigInteger.ModPow(2, (N + u) * pArray[m + 1], pArray[m]) == 1 && BigInteger.ModPow(2, (N + u), pArray[m]) != 1)//8
                     {
-                        pArray[m] = pArray[m + 1] * (N + k) + 1; //11 step
-                        if (pArray[m] > BigInteger.Pow(2, tArray[m]))
-                            break; //12th step
-                        if (!((BigInteger.ModPow(2, pArray[m + 1] * (N + k), pArray[m]) == 1) && (BigInteger.ModPow(2, (N + k), pArray[m]) != 1)))
-                        {
-                            k += 2;
-                            continue;
-                        }
-                        else
-                        {
-                            m--;
-                            break;
-                            
-                        }
-                        
+                        m--;
+                        flag = true;
+                        break;
                     }
-                    if (m < 0)
-                    {
-                        p = pArray[0];
-                        if (capacity == 1024)
-                            q = pArray[2];
-                        else
-                            q = pArray[10];
-                        return;
-                    }
-
+                    u += 2;                 
 
                 }
                 
                
             }
+            p = pArray[0];
+            q = pArray[1];
 
-        }
 
+        }      
        
-        private BigInteger NextYForLittle(BigInteger y)
-        {
-
-            return BigInteger.ModPow(BigInteger.Multiply(19381,y) + c, 1, BigInteger.Pow(2,16));
-
-        }
-        private void GenerateYArray (int rm, BigInteger y0)
-        {
-            yArray.Clear();
-            yArray.Add(y0);
-            for (int i=0;  i<rm; i++ )
-            {
-                yArray.Add(NextYForLittle(yArray[i]));
-            }
-        }       
 
         public void InitTArray(int capacity)
         {

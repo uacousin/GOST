@@ -13,7 +13,7 @@ namespace GOST
         {
 
             int quantity = 10;
-            int capacity = 2048;
+            int capacity = 512;
             
             Console.WriteLine("quantity: {0}, length: {1} bits", quantity, capacity);
             GOSTPrimeNumberGenerator gostgenerator = new GOSTPrimeNumberGenerator();
@@ -26,7 +26,7 @@ namespace GOST
             }
             var time = DateTime.Now.TimeOfDay - time1;
             //primesByGost.ForEach((x) => { Console.WriteLine(x); });
-            //primesByGost.ForEach((x) => { Console.WriteLine(BigIntegerExtentions.MillerRabin(x, 10)); });
+            primesByGost.ForEach((x) => { Console.WriteLine(BigIntegerExtentions.MillerRabin(x, 1000)); });
             Console.WriteLine("Time: {0} ms,\n Avg: {1} ms", time.TotalMilliseconds, (double)time.TotalMilliseconds / quantity);
             Console.WriteLine("Done!");
             
