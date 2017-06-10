@@ -14,10 +14,12 @@ namespace GOST
         private RSAParameters privateParameters;
         private BigInteger signaturePrivateKey;
         public  BigInteger sessionKey;
+        public int keySize;
         public GOSTSignatureGenerator signatureGenerator;
         
         public Sender(int keySize)
         {
+            this.keySize = keySize;
          
             rsa = RSA.Create();
             signaturePrivateKey = BigIntegerExtentions.GenerateBigIntByBitLength(512);
@@ -38,9 +40,17 @@ namespace GOST
 
         public Message Send()
         {
-            sessionKey = BigIntegerExtentions.GenerateBigIntByBitLength(128);
-            
-            var sessinKeyEncrypted = rsa.Encrypt(sessionKey.ToByteArray(), RSAEncryptionPadding.CreateOaep(HashAlgorithmName.MD5));
+            byte[] arr;
+            BigInteger modulus = BigIntegerExtentions.FromByteArray(publicParameters.Modulus);
+            do
+            {
+                arr = BigIntegerExtentions.GenerateRandomByteArray(128);
+                sessionKey = BigIntegerExtentions.FromByteArray(arr);
+            }
+            while (sessionKey >= modulus);
+
+            var r = sessionKey.ToByteArray();
+            var sessinKeyEncrypted = rsa.Encrypt(arr, RSAEncryptionPadding.CreateOaep(HashAlgorithmName.MD5));
 
 
             var hasher = MD5.Create();

@@ -31,7 +31,7 @@ namespace GOST
                 return false;
             else
             {
-                sessionKey = new BigInteger(rsa.Decrypt(message.key, RSAEncryptionPadding.CreateOaep(HashAlgorithmName.MD5)));
+                sessionKey = BigIntegerExtentions.FromByteArray(rsa.Decrypt(message.key, RSAEncryptionPadding.CreateOaep(HashAlgorithmName.MD5)));
                 return true;
             }
 
